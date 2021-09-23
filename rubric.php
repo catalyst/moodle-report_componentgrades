@@ -60,7 +60,8 @@ $filename = $course->shortname . ' - ' . $cm->name . '.xls';
 $data = $DB->get_records_sql("SELECT    grf.id AS grfid, crs.shortname AS course, asg.name AS assignment, gd.name AS rubric,
                                         grc.description, grl.definition, grl.score, grf.remark, grf.criterionid,
                                         rubm.username AS grader, stu.id AS userid, stu.idnumber AS idnumber, stu.firstname,
-                                        stu.lastname, stu.username AS student, gin.timemodified AS modified
+                                        stu.lastname, stu.username AS student, gin.timemodified AS modified, ag.grade AS grade, 
+                                        afc.commenttext AS feedback
                                 FROM {course} crs
                                 JOIN {course_modules} cm ON crs.id = cm.course
                                 JOIN {assign} asg ON asg.id = cm.instance
@@ -71,6 +72,7 @@ $data = $DB->get_records_sql("SELECT    grf.id AS grfid, crs.shortname AS course
                                 JOIN {gradingform_rubric_levels} grl ON (grl.criterionid = grc.id)
                                 JOIN {grading_instances} gin ON gin.definitionid = gd.id
                                 JOIN {assign_grades} ag ON ag.id = gin.itemid
+                                JOIN {assignfeedback_comments} AS afc ON ag.id = afc.grade
                                 JOIN {user} stu ON stu.id = ag.userid
                                 JOIN {user} rubm ON rubm.id = gin.raterid
                                 JOIN {gradingform_rubric_fillings} grf ON (grf.instanceid = gin.id)
