@@ -60,7 +60,7 @@ $filename = $course->shortname . ' - ' . $cm->name . '.xls';
 $data = $DB->get_records_sql("SELECT    grf.id AS grfid, crs.shortname AS course, asg.name AS assignment, gd.name AS rubric,
                                         grc.description, grl.definition, grl.score, grf.remark, grf.criterionid,
                                         rubm.username AS grader, stu.id AS userid, stu.idnumber AS idnumber, stu.firstname,
-                                        stu.lastname, stu.username AS student, gin.timemodified AS modified, ag.grade AS grade, 
+                                        stu.lastname, stu.username AS student, gin.timemodified AS modified, ag.grade AS grade, asg.grade AS maxgrade,
                                         afc.commenttext AS feedback
                                 FROM {course} crs
                                 JOIN {course_modules} cm ON crs.id = cm.course
@@ -120,7 +120,7 @@ $groups = array();
 if ($showgroups) {
     $groups = report_componentgrades_get_user_groups($course->id);
 }
-$row = report_componentgrades_add_data($sheet, $students, $gradinginfopos, 'rubric', $groups);
+$row = report_componentgrades_add_data($workbook, $sheet, $students, $gradinginfopos, 'rubric', $groups);
 
 $workbook->close();
 

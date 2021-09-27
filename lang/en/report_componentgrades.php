@@ -41,6 +41,7 @@ $string['score'] = 'Score';
 $string['definition'] = 'Definition';
 $string['feedback'] = 'Feedback';
 $string['grade'] = 'Final grade';
+$string['outof'] = 'Out of';
 $string['nogradesenteredrubric'] = "No grades have been entered into this assignment's rubric.";
 $string['nogradesenteredguide'] = "No grades have been entered into this assignment's marking guide.";
 $string['nobtecgrades'] = "No grades have been entered into this assignment's BTEC marking.";

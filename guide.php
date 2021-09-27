@@ -59,7 +59,7 @@ $filename = $course->shortname . ' - ' . $cm->name . '.xls';
 $data = $DB->get_records_sql("SELECT    ggf.id AS ggfid, crs.shortname AS course, asg.name AS assignment, gd.name AS guide,
                                         ggc.shortname, ggf.score, ggf.remark, ggf.criterionid, rubm.username AS grader,
                                         stu.id AS userid, stu.idnumber AS idnumber, stu.firstname, stu.lastname,
-                                        stu.username AS student, gin.timemodified AS modified, ag.grade AS grade, 
+                                        stu.username AS student, gin.timemodified AS modified, ag.grade AS grade, asg.grade AS maxgrade, 
                                         afc.commenttext AS feedback
                                 FROM {course} crs
                                 JOIN {course_modules} cm ON crs.id = cm.course
@@ -118,7 +118,7 @@ if ($showgroups) {
     $groups = report_componentgrades_get_user_groups($course->id);
 }
 
-report_componentgrades_add_data($sheet, $students, $gradinginfopos, 'guide', $groups);
+report_componentgrades_add_data($workbook, $sheet, $students, $gradinginfopos, 'guide', $groups);
 
 $workbook->close();
 
