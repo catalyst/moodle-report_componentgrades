@@ -187,7 +187,7 @@ function report_componentgrades_add_data(MoodleExcelWorksheet $sheet, array $stu
              $sheet->write_string($row, $col++, $student->idnumber);
         }
         if (get_config('report_componentgrades', 'showgroups')) {
-            if (!is_null($groups)) {
+            if (!empty($groups)) {
                 if (isset($groups[$student->userid])) {
                     $sheet->write_string($row, $col++, implode(', ', $groups[$student->userid]));
                 } else {
