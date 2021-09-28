@@ -205,6 +205,9 @@ function report_componentgrades_add_data($workbook, MoodleExcelWorksheet $sheet,
                 /* if BTEC 0=N and 1=Y */
                 $sheet->write_string($row, $col++, $line->score);
             }
+            if (is_numeric($line->maxscore)) {
+                $sheet->write_number($row, $col++, $line->maxscore);
+            }
             if ($method == 'rubric') {
                 // Only rubrics have a "definition".
                 $sheet->write_string($row, $col++, $line->definition);
